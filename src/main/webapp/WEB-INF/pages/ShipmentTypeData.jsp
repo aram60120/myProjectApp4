@@ -10,9 +10,9 @@
 </head>
 <body>
 	<H3>WELCOME TO SHIPMENT TYPE DATA</H3> 
-	<a href="excel">ExcelExport</a>
-	<a href="pdf">PDFExport</a>
-		<pre>
+	<a href="excel"><img src="../resources/images/pdf.png" width="60" height="60"/></a>
+	<a href="pdf"><img src="../resources/images/pdf.png" width="60"  height="60"/></a>
+		
 	<c:choose>
 		<c:when test="${!empty list }">
                 <table border="1">
@@ -27,7 +27,7 @@
                       <th colspan="3">OPERATION</th>
                            </tr>     
                       
-                             <c:forEach items="${list }" var="ob">
+                             <c:forEach items="${list  }" var="ob">
                       <tr>
                           <td>${ob.shipId }</td>
                           <td>${ob.shipMode }</td>
@@ -35,9 +35,9 @@
                           <td>${ob.enbShip }</td>
                           <td>${ob.shipGrad }</td>
                           <td>${ob.shipDesc }</td>
-                        <td> <a href="delete?sid=${ob.shipId }">DELETE</a></td>
-                        <td> <a href="edit?sid=${ob.shipId}">EDIT</a></td>
-                       <td><a href="view?sid=${ob.shipId}">VIEW</a>
+                        <td> <a href="delete?sid=${ob.shipId }"> <img src="C:/Users/ABHI/Desktop/jr_ntr.jpg" width="30" height="30"/> </a> </td>
+                        <td> <a href="edit?sid=${ob.shipId}"><img src="../resources/images/pdf.png" width="30" height="30"/> </a> </td>
+                       <td><a href="view?sid=${ob.shipId}"><img src="../resources/images/pdf.png" width="30" height="30"/></a></td>
                       </tr>
                      </c:forEach>
                     </table>    
@@ -47,7 +47,7 @@
             </c:otherwise>
           </c:choose>
           <a href="register">Previous</a>
-      </pre>
+      
 
 ${message}
 </body>

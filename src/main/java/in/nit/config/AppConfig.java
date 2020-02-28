@@ -17,6 +17,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -26,7 +28,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @PropertySource("classpath:app.properties")
 //all layered classes common package name
 @ComponentScan("in.nit")
-public class AppConfig {
+public class AppConfig implements WebMvcConfigurer {
 	@Autowired
 	private Environment env;
 	
@@ -87,5 +89,13 @@ public class AppConfig {
 	public CommonsMultipartResolver  multipartResolver() {
 		return new CommonsMultipartResolver();
 	}
+	//7.Enables the resources folder for images is view, excel,delete,edit
 	
+	
+	public void addResourceHandelrs(	ResourceHandlerRegistry registry) {
+		registry
+		.addResourceHandler("/resources/**")
+		.addResourceLocations("/resources/");
+		
+	}
 }

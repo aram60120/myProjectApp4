@@ -44,4 +44,11 @@ public class ShimpmentTypeDaoImpl implements IShipmentTypeDao {
 		ht.update(ob);
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<Object[]> dataShipmentModeCount() {
+		String hql="select shipMode,count(shipMode) from in.nit.model.ShipmentType group by shipMode";
+		return (List<Object[]>) ht.find(hql);
+	}
+
 }

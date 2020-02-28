@@ -3,6 +3,8 @@ package in.nit.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +16,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.nit.model.ShipmentType;
 import in.nit.service.IShipmentTypeService;
+import in.nit.util.ShipmentTypeUtil;
 import in.nit.view.ShipmentTypeExcelView;
 import in.nit.view.ShipmentTypePdfView;
 
 @Controller
-//@RequestMapping("/shipment")
+@RequestMapping("/shipment")
 public class ShipmentTyppeController {
 	@Autowired
 	private IShipmentTypeService service;
-
+	@Autowired
+	private ServletContext context;
+	@Autowired
+  private ShipmentTypeUtil util;
 	@RequestMapping("/register")
 	public String showRegPage(Model model ) {
 		model.addAttribute("shipmentType",new ShipmentType());
@@ -118,6 +124,14 @@ Model model
 			m.addObject("list",Arrays.asList(st));
 		}
 		return m;
+	}
+	@RequestMapping("/charts")
+	public String showCharts() {
+		String path=context.getRealPath("/");
+		List<Object[]> list=service.dataShipmentModeCount();
+		util.generatePie(path,list);
+		return "ShipmentTypeCharts";
+		
 	}
 }
 

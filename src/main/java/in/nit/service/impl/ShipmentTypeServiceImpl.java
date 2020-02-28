@@ -41,5 +41,10 @@ public ShipmentType getOneShipmentType(Integer id) {
 public void updateShipmentType(ShipmentType ob) {
 	dao.updateShipmentType(ob);
 }
+@Override
+public List<Object[]> dataShipmentModeCount() {
+
+	return dao.dataShipmentModeCount();
+}
 
 }

@@ -29,7 +29,9 @@
 <th>NOTE</th>  <td>${ob.shipDesc }</td>
 </tr>
 </table>
-<a href="excel?id=${ob.shipId }">ExcelExport</a>
-<a href="pdf?id=${ob.shipId }">PDF Export</a>
+<a href="excel?id=${ob.shipId }"> <img src="C:\Users\ABHI\Desktop\jr_ntr.jpg" width="30" height="30"/></a>
+<%--  <a href="excel?id=${ob.shipId }">EXCELEXPORT</a> --%>
+<!--  <img src="../resources/images/excel.png" width="30" height="30"/>  -->
+<a href="pdf?id=${ob.shipId }"> <img src="C:\Users\ABHI\Desktop\jr_ntr.jpg" width="30" height="30"/></a>
 </body>
 </html>
