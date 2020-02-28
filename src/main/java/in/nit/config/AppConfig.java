@@ -90,8 +90,6 @@ public class AppConfig implements WebMvcConfigurer {
 		return new CommonsMultipartResolver();
 	}
 	//7.Enables the resources folder for images is view, excel,delete,edit
-	
-	
 	public void addResourceHandelrs(	ResourceHandlerRegistry registry) {
 		registry
 		.addResourceHandler("/resources/**")
