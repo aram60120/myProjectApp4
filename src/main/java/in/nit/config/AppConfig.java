@@ -21,13 +21,17 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import in.nit.model.Document;
+import in.nit.model.ShipmentType;
+import in.nit.model.UomType;
+
 @Configuration
-@EnableTransactionManagement //eables HtX
+@EnableTransactionManagement  //eables HtX
 @EnableWebMvc // Spring MVC Activated
 //load properties into Spring container
 @PropertySource("classpath:app.properties")
 //all layered classes common package name
-@ComponentScan("in.nit")
+@ComponentScan(basePackages="in.nit")
 public class AppConfig implements WebMvcConfigurer {
 	@Autowired
 	private Environment env;
@@ -48,8 +52,8 @@ public class AppConfig implements WebMvcConfigurer {
 		LocalSessionFactoryBean s=new LocalSessionFactoryBean();
 		s.setDataSource(ds());
 		s.setHibernateProperties(props());
-		//s.setAnnotatedClasses(ShipmentType.class);
-		s.setPackagesToScan("in.nit.model");
+	//	s.setAnnotatedClasses(ShipmentType.class,UomType.class,Document.class);
+	s.setPackagesToScan("in.nit");
 		return s;
 	}
 	@Bean
@@ -90,10 +94,13 @@ public class AppConfig implements WebMvcConfigurer {
 		return new CommonsMultipartResolver();
 	}
 	//7.Enables the resources folder for images is view, excel,delete,edit
-	public void addResourceHandelrs(	ResourceHandlerRegistry registry) {
-		registry
-		.addResourceHandler("/resources/**")
-		.addResourceLocations("/resources/");
-		
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+	    registry
+	    .addResourceHandler("/resources/**")
+	    .addResourceLocations("resources/");
+	    
 	}
 }

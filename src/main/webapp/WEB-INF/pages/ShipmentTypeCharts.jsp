@@ -9,7 +9,7 @@
 <body>
 <H3>WELCOME TO SHIPMENTS CHARTS</H3>
 <img src="../resources/images/shipmentA.jpg"/>
-<img src="../resources/images/shipmentB.jpg"/>
+<img src="../resources/images/shipmentB.jpg"/> 
 
 </body>
 </html>

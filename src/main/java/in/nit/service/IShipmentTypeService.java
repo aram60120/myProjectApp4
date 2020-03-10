@@ -10,5 +10,5 @@ List<ShipmentType> getAllShipmentTypes();
 public void deleteShipmentType(Integer id);
 ShipmentType getOneShipmentType(Integer id);
 void updateShipmentType(ShipmentType ob);
-public List<Object[]>dataShipmentModeCount();
+public List<Object[]> getShipmentModeCount();
 }

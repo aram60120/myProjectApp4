@@ -1,6 +1,8 @@
+
 package in.nit.service.impl;
 
 import java.util.Collections;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +43,12 @@ public ShipmentType getOneShipmentType(Integer id) {
 public void updateShipmentType(ShipmentType ob) {
 	dao.updateShipmentType(ob);
 }
-@Override
-public List<Object[]> dataShipmentModeCount() {
 
-	return dao.dataShipmentModeCount();
+
+@Transactional(readOnly = true)
+public List<Object[]> getShipmentModeCount() {
+
+	return dao.getShipmentModeCount();
 }
 
 }

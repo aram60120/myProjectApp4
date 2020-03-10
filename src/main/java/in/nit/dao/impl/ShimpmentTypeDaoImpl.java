@@ -2,6 +2,7 @@ package in.nit.dao.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -46,7 +47,7 @@ public class ShimpmentTypeDaoImpl implements IShipmentTypeDao {
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
-	public List<Object[]> dataShipmentModeCount() {
+	public List<Object[]>  getShipmentModeCount() {
 		String hql="select shipMode,count(shipMode) from in.nit.model.ShipmentType group by shipMode";
 		return (List<Object[]>) ht.find(hql);
 	}

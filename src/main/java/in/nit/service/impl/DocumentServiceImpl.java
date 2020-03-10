@@ -15,8 +15,7 @@ public class DocumentServiceImpl implements IDocumentService {
 	@Autowired
 	private IDocumentDao dao;
 	@Transactional
-	
-	public Integer saveDocument(Document doc) {
+		public Integer saveDocument(Document doc) {
 		System.out.println("a");
 
 

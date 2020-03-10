@@ -25,22 +25,25 @@ import in.nit.view.ShipmentTypePdfView;
 public class ShipmentTyppeController {
 	@Autowired
 	private IShipmentTypeService service;
+	
 	@Autowired
 	private ServletContext context;
+	
 	@Autowired
   private ShipmentTypeUtil util;
+	
 	@RequestMapping("/register")
 	public String showRegPage(Model model ) {
 		model.addAttribute("shipmentType",new ShipmentType());
 		return "shipMentTypeRegister";
 	}
 	@RequestMapping(value="/save",method=RequestMethod.POST)
-	public String saveShipmentType( @ModelAttribute ShipmentType ShipmentType, Model model) {
+	public String saveShipmentType( @ModelAttribute ShipmentType shipmentType, Model model) {
 
-		Integer id=service.saveShipmentType(ShipmentType);
+		Integer id=service.saveShipmentType(shipmentType);
 		String message="ShipmentType'"+id+"' saved";
 		model.addAttribute("message", message);
-		model.addAttribute("shipmentType",new ShipmentType());
+	model.addAttribute("shipmentType",new ShipmentType());
 		return"shipMentTypeRegister";
 	}
 	@RequestMapping("/all")
@@ -120,18 +123,39 @@ Model model
 		m.addObject("list",list);
 		}
 		else {
-			ShipmentType st=service.getOneShipmentType(id);
+			ShipmentType st =service.getOneShipmentType(id);
 			m.addObject("list",Arrays.asList(st));
 		}
 		return m;
 	}
-	@RequestMapping("/charts")
-	public String showCharts() {
-		String path=context.getRealPath("/");
-		List<Object[]> list=service.dataShipmentModeCount();
-		util.generatePie(path,list);
-		return "ShipmentTypeCharts";
+	@RequestMapping("/charts") 
+	public String showCharts() { 
+		List<Object[]> list=service.getShipmentModeCount();  
+		String path=context.getRealPath("/");  
+		System.out.println("******************************list:"+list);
+		util.generatePie(path, list);
 		
-	}
+		util.generateBar(path, list); 
+		return "ShipmentTypeCharts"; 
+		} 
+	/*
+	 * @RequestMapping("/charts") public String showCharts() { List<Object[]>
+	 * list=service.dataShipmentModeCount(); String path=context.getRealPath("/");
+	 * util.generatePie(path,list); util.generateBar(path,list); return
+	 * "ShipmentTypeCharts";
+	 * 
+	 * }
+	 */
+	//   OR USE SEPARATE METHOD
+	
+//	@RequestMapping("/charts")
+//	public String showChartA() {
+//		String path=context.getRealPath("/");
+//		List<Object[]> list=service.dataShipmentModeCount();
+//		util.generateBar(path,list);
+//		return "ShipmentTypeCharts";
+//		
+//	}
+
 }
 
